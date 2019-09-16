@@ -58,17 +58,16 @@ namespace ReflectionLesson
                         }
                     }
                 }
-
-                if (!type.IsInterface)
-                {
-                    var pathSave = @"C:\Новая папка\" + $"{type.Name}" + ".txt";
+                char[] charsToTrim = { '<', '>', '~', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '{', '}', '[', ']', '\'' };
+                
+                    var pathSave = @"C:\Новая папка\" + $"{type.Name.Trim(charsToTrim)}" + ".txt";
                     using (var stream = new FileStream(pathSave, FileMode.OpenOrCreate))
                     {
                         var bytes = Encoding.Default.GetBytes(textInfo);
 
                         stream.Write(bytes, 0, bytes.Length);
                     }
-                }
+                
             }
             Console.ReadLine();
         }
